@@ -12,7 +12,7 @@ class CubeScene {
         // Criar e posicionar a câmera
         let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 10) // Ajuste a posição para visualizar melhor o cubo
+        cameraNode.position = SCNVector3(x: 0.5, y: 0, z: 10) // Ajuste a posição para visualizar melhor o cubo
         scene.rootNode.addChildNode(cameraNode)
         
 //        // Criar luz para iluminar o cubo
@@ -25,5 +25,3 @@ class CubeScene {
         return scene
     }
 }
-
-

@@ -1,7 +1,7 @@
 import SwiftUI
 import SceneKit
 
-struct CubeView: UIViewRepresentable {
+struct CubeScreen: UIViewRepresentable {
     func makeUIView(context: Context) -> SCNView {
         let sceneView = SCNView()
         sceneView.scene = CubeScene.createScene()
@@ -10,8 +10,6 @@ struct CubeView: UIViewRepresentable {
         return sceneView
     }
     
-    func updateUIView(_ uiView: SCNView, context: Context) {
-        // Se precisar atualizar algo na cena, faça isso aqui
-    }
+    func updateUIView(_ uiView: SCNView, context: Context) {}
 }
 
