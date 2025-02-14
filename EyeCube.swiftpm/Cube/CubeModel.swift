@@ -6,7 +6,6 @@ class RubiksCube: SCNNode {
     var cubeDistance: CGFloat = 1 // distância entre os cubos
     var cubeGeometry: SCNBox = SCNBox()
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
