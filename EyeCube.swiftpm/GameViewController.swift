@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
         createRubiksCube()
         createArchorNode()
         //rotateRightClockwise()
-        rotateRightAnticlockwise()
+        rotateRightClockwise()
     }
     
     func createScene() {

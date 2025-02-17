@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct MyApp: App {
+struct EyeCubeApp: App {
     var body: some Scene {
         WindowGroup {
             CubeView()
