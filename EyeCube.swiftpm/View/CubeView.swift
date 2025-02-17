@@ -16,4 +16,3 @@ struct CubeView: View {
             .edgesIgnoringSafeArea(.all)
     }
 }
-

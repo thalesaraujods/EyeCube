@@ -23,16 +23,3 @@ class CubeNode: SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-enum Face {
-    case right, left, up, down, front, back
-}
-
-var faces: [Face: SCNVector3] = [
-    .right: SCNVector3( 1,  0,  0), // Direita
-    .left: SCNVector3(-1,  0,  0), // Esquerda
-    .up: SCNVector3( 0,  1,  0), // Cima
-    .down: SCNVector3( 0, -1,  0), // Baixo
-    .front: SCNVector3( 0,  0,  1), // Frente
-    .back: SCNVector3( 0,  0, -1) // Trás
-]
