@@ -4,7 +4,7 @@ import SwiftUI
 struct EyeCubeApp: App {
     var body: some Scene {
         WindowGroup {
-            CubeView()
+            CoordinatorView()
         }
     }
 }

@@ -35,8 +35,6 @@ class GameViewController: UIViewController {
         createCamera()
         createRubiksCube()
         createArchorNode()
-        //rotateRightClockwise()
-        rotateRightClockwise()
     }
     
     func createScene() {
@@ -46,7 +44,7 @@ class GameViewController: UIViewController {
         // sceneview
         sceneView = SCNView(frame: self.view.frame)
         sceneView.scene = SCNScene()
-        sceneView.backgroundColor = .gray
+        sceneView.backgroundColor = .clear
         sceneView.showsStatistics = false
         sceneView.allowsCameraControl = true
         sceneView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -66,28 +64,8 @@ class GameViewController: UIViewController {
         let camera = SCNCamera()
         cameraNode = SCNNode()
         cameraNode.camera = camera
-        cameraNode.position = SCNVector3Make(0, 0, 10)
+        cameraNode.position = SCNVector3Make(0, -1, 10)
         sceneView.scene!.rootNode.addChildNode(cameraNode)
-    }
-    
-    func rotateRightClockwise() {
-        sceneView.scene!.rootNode.runAction(.sequence([
-            .wait(duration: 2),
-            .run { _ in
-                self.rotate(face: .right, clockWise: true)
-            },
-            .wait(duration: 2)
-        ]))
-    }
-    
-    func rotateRightAnticlockwise() {
-        sceneView.scene!.rootNode.runAction(.sequence([
-            .wait(duration: 2),
-            .run { _ in
-                self.rotate(face: .right, clockWise: false)
-            },
-            .wait(duration: 2)
-        ]))
     }
     
     func createRubiksCube() {
@@ -109,7 +87,7 @@ class GameViewController: UIViewController {
         yellowMaterial.diffuse.contents = UIColor.yellow
         
         let whiteMaterial = SCNMaterial()
-        whiteMaterial.diffuse.contents = UIColor.white
+        whiteMaterial.diffuse.contents = UIColor.black
         
         let orangeMaterial = SCNMaterial()
         orangeMaterial.diffuse.contents = UIColor.orange
@@ -173,10 +151,20 @@ class GameViewController: UIViewController {
         for (key, face) in faces {
             let faceAnchor = FaceAnchorNode()
             faceAnchor.position = face
-            faceAnchor.geometry!.materials.first?.diffuse.contents = UIColor.blue
+            faceAnchor.geometry!.materials.first?.diffuse.contents = UIColor.clear
             sceneView.scene!.rootNode.addChildNode(faceAnchor)
             facesNodes[key] = faceAnchor
         }
+    }
+    
+    func makeMovement(face: Face, clockWise: Bool) {
+        sceneView.scene!.rootNode.runAction(.sequence([
+            .wait(duration: 2),
+            .run { _ in
+                self.rotate(face: face, clockWise: clockWise)
+            },
+            .wait(duration: 2)
+        ]))
     }
     
     func rotate(face: Face, clockWise: Bool = true) {

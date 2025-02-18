@@ -2,6 +2,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject private var coordinator: Coordinator
+    
     // dimensoes
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
@@ -13,7 +15,7 @@ struct HomeView: View {
             
             Spacer().frame(height: screenHeight*0.21)
             Button(action: {
-                
+                coordinator.push(.cube)
             }) {
                 Label("home_button", systemImage: "")
                     .font(.system(.body))
@@ -24,6 +26,16 @@ struct HomeView: View {
                     .multilineTextAlignment(.center)
             }
         }
+        .navigationTitle("EyeCube")
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                Button(action: {
+//                    print("Configurações pressionado")
+//                }) {
+//                    Image(systemName: "questionmark.circle.fill") // Ícone de configurações
+//                }
+//            }
+//        }
     }
 }
 
@@ -32,10 +44,10 @@ struct HomeInformationView: View {
         Image(systemName: "cube")
             .font(.custom("SF Pro", size: 40, relativeTo: .largeTitle))
             .fontWeight(.bold)
-        Text("EyeCube")
-            .font(.custom("SF Pro", size: 40, relativeTo: .largeTitle))
-            .fontWeight(.bold)
-            .multilineTextAlignment(.center)
+        //        Text("EyeCube")
+        //            .font(.custom("SF Pro", size: 40, relativeTo: .largeTitle))
+        //            .fontWeight(.bold)
+        //            .multilineTextAlignment(.center)
         Text("home_message")
             .font(.custom("SF Pro", size: 20, relativeTo: .headline))
             .fontWeight(.bold)
