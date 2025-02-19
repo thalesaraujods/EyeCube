@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject private var coordinator: Coordinator
+    @ObservedObject var cubeViewModel = CubeViewModel.shared
     
     // dimensoes
     let screenWidth = UIScreen.main.bounds.width
@@ -16,6 +17,7 @@ struct HomeView: View {
             Spacer().frame(height: screenHeight*0.21)
             Button(action: {
                 coordinator.push(.cube)
+                cubeViewModel.startTimer()
             }) {
                 Label("home_button", systemImage: "")
                     .font(.system(.body))

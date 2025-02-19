@@ -10,6 +10,7 @@ struct ButtonRotateView: View {
     let screenHeight = UIScreen.main.bounds.height
     let buttonCollor = Color.black
     let sizeButton:CGFloat = 58
+    let rotateDuration: CGFloat = 0.5
     
     var body: some View {
         // Principal
@@ -18,7 +19,7 @@ struct ButtonRotateView: View {
             HStack (spacing: 31){
                 // L'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .left, clockWise: false)
+                    gameViewController!.makeMovement(face: .left, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image("l_anticlockwise")
@@ -30,7 +31,7 @@ struct ButtonRotateView: View {
                 
                 // L
                 Button(action: {
-                    gameViewController!.makeMovement(face: .left, clockWise: true)
+                    gameViewController!.makeMovement(face: .left, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "l.circle.fill")
@@ -42,7 +43,7 @@ struct ButtonRotateView: View {
                 
                 // R'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .right, clockWise: false)
+                    gameViewController!.makeMovement(face: .right, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image("r_anticlockwise")
@@ -54,7 +55,7 @@ struct ButtonRotateView: View {
                 
                 // R
                 Button(action: {
-                    gameViewController!.makeMovement(face: .right, clockWise: true)
+                    gameViewController!.makeMovement(face: .right, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "r.circle.fill")
@@ -69,7 +70,7 @@ struct ButtonRotateView: View {
             HStack (spacing: 31){
                 // B'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .back, clockWise: false)
+                    gameViewController!.makeMovement(face: .back, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image("b_anticlockwise")
@@ -81,7 +82,7 @@ struct ButtonRotateView: View {
                 
                 // B
                 Button(action: {
-                    gameViewController!.makeMovement(face: .back, clockWise: true)
+                    gameViewController!.makeMovement(face: .back, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "b.circle.fill")
@@ -93,7 +94,7 @@ struct ButtonRotateView: View {
                 
                 // F'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .front, clockWise: false)
+                    gameViewController!.makeMovement(face: .front, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image("f_anticlockwise")
@@ -105,7 +106,7 @@ struct ButtonRotateView: View {
                 
                 // F
                 Button(action: {
-                    gameViewController!.makeMovement(face: .front, clockWise: true)
+                    gameViewController!.makeMovement(face: .front, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "f.circle.fill")
@@ -120,7 +121,7 @@ struct ButtonRotateView: View {
             HStack (spacing: 31) {
                 // D'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .down, clockWise: false)
+                    gameViewController!.makeMovement(face: .down, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image("d_anticlockwise")
@@ -132,7 +133,7 @@ struct ButtonRotateView: View {
                 
                 // D
                 Button(action: {
-                    gameViewController!.makeMovement(face: .down, clockWise: true)
+                    gameViewController!.makeMovement(face: .down, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "d.circle.fill")
@@ -144,7 +145,7 @@ struct ButtonRotateView: View {
                 
                 // U'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .up, clockWise: false)
+                    gameViewController!.makeMovement(face: .up, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image("u_anticlockwise")
@@ -156,7 +157,7 @@ struct ButtonRotateView: View {
                 
                 // U
                 Button(action: {
-                    gameViewController!.makeMovement(face: .up, clockWise: true)
+                    gameViewController!.makeMovement(face: .up, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "u.circle.fill")

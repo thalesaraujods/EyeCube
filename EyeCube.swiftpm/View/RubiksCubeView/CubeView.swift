@@ -16,10 +16,17 @@ struct CubeView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
+                Text("\(viewModel.formattedTime)")
+                    .font(.largeTitle)
+                    .padding()
                 Spacer()
                 ButtonRotateView(gameViewController: $gameViewController)
             }
         }
     }
+}
+
+#Preview {
+    CubeView ()
 }
 

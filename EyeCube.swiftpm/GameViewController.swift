@@ -4,7 +4,7 @@ import SceneKit
 class GameViewController: UIViewController {
     
     // Faces do Rubiks's Cube
-    enum Face {
+    enum Face: CaseIterable {
         case right, left, up, down, front, back
     }
     
@@ -35,6 +35,22 @@ class GameViewController: UIViewController {
         createCamera()
         createRubiksCube()
         createArchorNode()
+        generateScramble()
+    }
+    
+    func generateScramble() {
+        
+        var delay: TimeInterval = 0
+        
+        for _ in 0..<10 {
+            let randomFace = Face.allCases.randomElement()!
+            let randomClockwise = Bool.random()
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                self.makeMovement(face: randomFace, clockWise: randomClockwise, duration: 0.01)
+            }
+            
+            delay += 0.1 // Adiciona um delay entre cada rotação
+        }
     }
     
     func createScene() {
@@ -69,7 +85,6 @@ class GameViewController: UIViewController {
     }
     
     func createRubiksCube() {
-        
         // distâncias entre os cubos
         let offset: [Float] = [-0.50, 0.5]
         
@@ -87,7 +102,7 @@ class GameViewController: UIViewController {
         yellowMaterial.diffuse.contents = UIColor.yellow
         
         let whiteMaterial = SCNMaterial()
-        whiteMaterial.diffuse.contents = UIColor.black
+        whiteMaterial.diffuse.contents = UIColor.gray
         
         let orangeMaterial = SCNMaterial()
         orangeMaterial.diffuse.contents = UIColor.orange
@@ -157,22 +172,19 @@ class GameViewController: UIViewController {
         }
     }
     
-    func makeMovement(face: Face, clockWise: Bool) {
+    func makeMovement(face: Face, clockWise: Bool, duration: CGFloat) {
         sceneView.scene!.rootNode.runAction(.sequence([
-//            .wait(duration: 2),
+            //            .wait(duration: 2),
             .run { _ in
-                self.rotate(face: face, clockWise: clockWise, duration: 0.2)
-            }//,
-//            .wait(duration: 2)
+                self.rotate(face: face, clockWise: clockWise, duration: duration)
+            },
+            //.wait(duration: 0.25)
         ]))
     }
     
     func rotate(face: Face, clockWise: Bool = true, duration: CGFloat = 1) {
-        
         let faceNode = facesNodes[face]
-        
         let contactCubes = sceneView.scene!.physicsWorld.contactTest(with: faceNode!.physicsBody!)
-        
         var processed: [SCNNode] = []
         
         for contactCube in contactCubes {
@@ -187,12 +199,10 @@ class GameViewController: UIViewController {
                     
                     cube.transform = sceneView.scene!.rootNode.convertTransform(oldTransform, to: faceNode!)
                 }
-                
             }
         }
         
         let rotateDir = faces[face]! * (.pi / 2) * (clockWise ? -1 : 1)
-        
         faceNode?.runAction(.sequence([
             .rotateBy(x: CGFloat(rotateDir.x),
                       y: CGFloat(rotateDir.y),
@@ -250,11 +260,8 @@ class GameViewController: UIViewController {
 }
 
 extension GameViewController: SCNPhysicsContactDelegate {
-    
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        
     }
-    
 }
 
 extension SCNVector3 {
