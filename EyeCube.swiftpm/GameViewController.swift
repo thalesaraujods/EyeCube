@@ -46,10 +46,10 @@ class GameViewController: UIViewController {
             let randomFace = Face.allCases.randomElement()!
             let randomClockwise = Bool.random()
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                self.makeMovement(face: randomFace, clockWise: randomClockwise, duration: 0.01)
+                self.makeMovement(face: randomFace, clockWise: randomClockwise, duration: 0.1)
             }
             
-            delay += 0.1 // Adiciona um delay entre cada rotação
+            delay += 0.25 // Adiciona um delay entre cada rotação
         }
     }
     
@@ -91,24 +91,31 @@ class GameViewController: UIViewController {
         // material
         let greenMaterial = SCNMaterial()
         greenMaterial.diffuse.contents = UIColor.green
+        greenMaterial.name = "green"
         
         let redMaterial = SCNMaterial()
         redMaterial.diffuse.contents = UIColor.red
+        redMaterial.name = "red"
         
         let blueMaterial = SCNMaterial()
         blueMaterial.diffuse.contents = UIColor.blue
+        blueMaterial.name = "blue"
         
         let yellowMaterial = SCNMaterial()
         yellowMaterial.diffuse.contents = UIColor.yellow
+        yellowMaterial.name = "yellow"
         
         let whiteMaterial = SCNMaterial()
         whiteMaterial.diffuse.contents = UIColor.gray
+        whiteMaterial.name = "white"
         
         let orangeMaterial = SCNMaterial()
         orangeMaterial.diffuse.contents = UIColor.orange
+        orangeMaterial.name = "orange"
         
         let blackMaterial = SCNMaterial()
         blackMaterial.diffuse.contents = UIColor.black
+        blackMaterial.name = "black"
         
         
         for x in offset {
