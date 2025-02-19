@@ -159,15 +159,15 @@ class GameViewController: UIViewController {
     
     func makeMovement(face: Face, clockWise: Bool) {
         sceneView.scene!.rootNode.runAction(.sequence([
-            .wait(duration: 2),
+//            .wait(duration: 2),
             .run { _ in
-                self.rotate(face: face, clockWise: clockWise)
-            },
-            .wait(duration: 2)
+                self.rotate(face: face, clockWise: clockWise, duration: 0.2)
+            }//,
+//            .wait(duration: 2)
         ]))
     }
     
-    func rotate(face: Face, clockWise: Bool = true) {
+    func rotate(face: Face, clockWise: Bool = true, duration: CGFloat = 1) {
         
         let faceNode = facesNodes[face]
         
@@ -196,7 +196,7 @@ class GameViewController: UIViewController {
         faceNode?.runAction(.sequence([
             .rotateBy(x: CGFloat(rotateDir.x),
                       y: CGFloat(rotateDir.y),
-                      z: CGFloat(rotateDir.z), duration: 0.5),
+                      z: CGFloat(rotateDir.z), duration: duration),
             .run { [weak self] node in
                 guard let self else { return }
                 for child in processed {

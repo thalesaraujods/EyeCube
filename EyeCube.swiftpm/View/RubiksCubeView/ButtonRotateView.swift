@@ -1,50 +1,8 @@
-import UIKit
 import SwiftUI
 
-// UIViewController Representable to bring the View Controller to SwiftUI
-struct GameView: UIViewControllerRepresentable {
+struct ButtonRotateView: View {
     
-    // Binding para receber a referência da GameViewController
-    @Binding var gameViewController: GameViewController?
-    
-    func makeUIViewController(context: Context) -> GameViewController {
-        let gameVC = GameViewController()
-        
-        // Como a criação pode ocorrer fora do ciclo de atualização do SwiftUI,
-        // usamos DispatchQueue.main.async para atribuir a referência de forma segura.
-        DispatchQueue.main.async {
-            self.gameViewController = gameVC
-        }
-        
-        return gameVC
-    }
-    
-    func updateUIViewController(_ uiViewController: GameViewController, context: Context) {}
-}
-
-struct CubeView: View {
-    
-    @State private var gameViewController: GameViewController?
-    
-    // dimensoes
-    let screenWidth = UIScreen.main.bounds.width
-    let screenHeight = UIScreen.main.bounds.height
-    
-    var body: some View {
-        ZStack {
-            GameView(gameViewController: $gameViewController)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Spacer()
-                CubeButtonRotateView(gameViewController: $gameViewController)
-            }
-        }
-    }
-}
-
-struct CubeButtonRotateView: View {
-    
+    @ObservedObject var viewModel = CubeViewModel.shared
     @Binding var gameViewController: GameViewController?
     
     // dimensoes
@@ -61,42 +19,50 @@ struct CubeButtonRotateView: View {
                 // L'
                 Button(action: {
                     gameViewController!.makeMovement(face: .left, clockWise: false)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image("l_anticlockwise")
                         .resizable()
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // L
                 Button(action: {
                     gameViewController!.makeMovement(face: .left, clockWise: true)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "l.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // R'
                 Button(action: {
                     gameViewController!.makeMovement(face: .right, clockWise: false)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image("r_anticlockwise")
                         .resizable()
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // R
                 Button(action: {
                     gameViewController!.makeMovement(face: .right, clockWise: true)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "r.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
             }
             
             // 2ª linha
@@ -104,42 +70,50 @@ struct CubeButtonRotateView: View {
                 // B'
                 Button(action: {
                     gameViewController!.makeMovement(face: .back, clockWise: false)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image("b_anticlockwise")
                         .resizable()
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // B
                 Button(action: {
                     gameViewController!.makeMovement(face: .back, clockWise: true)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "b.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // F'
                 Button(action: {
                     gameViewController!.makeMovement(face: .front, clockWise: false)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image("f_anticlockwise")
                         .resizable()
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // F
                 Button(action: {
                     gameViewController!.makeMovement(face: .front, clockWise: true)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "f.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
             }
             
             // 3ª linha
@@ -147,42 +121,50 @@ struct CubeButtonRotateView: View {
                 // D'
                 Button(action: {
                     gameViewController!.makeMovement(face: .down, clockWise: false)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image("d_anticlockwise")
                         .resizable()
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // D
                 Button(action: {
                     gameViewController!.makeMovement(face: .down, clockWise: true)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "d.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // U'
                 Button(action: {
                     gameViewController!.makeMovement(face: .up, clockWise: false)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image("u_anticlockwise")
                         .resizable()
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
                 
                 // U
                 Button(action: {
                     gameViewController!.makeMovement(face: .up, clockWise: true)
+                    viewModel.disableButtonsTemporarily()
                 }) {
                     Image(systemName: "u.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
                         .frame(width: screenWidth*0.15, height: screenHeight*0.07)
                         .foregroundColor(buttonCollor)
                 }
+                .disabled(viewModel.isDisabled)
             }
         }
         .padding()
