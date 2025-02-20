@@ -28,7 +28,6 @@ class CubeViewModel: ObservableObject {
     }
     
     func disableButtonsTemporarily() {
-        print("apertei o botão")
         isDisabled = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.isDisabled = false
