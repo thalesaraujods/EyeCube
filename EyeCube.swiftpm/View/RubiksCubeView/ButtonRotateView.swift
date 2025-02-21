@@ -3,7 +3,7 @@ import SwiftUI
 struct ButtonRotateView: View {
     
     @ObservedObject var viewModel = CubeViewModel.shared
-    @Binding var gameViewController: GameViewController?
+    @Binding var gameViewController: GameViewController
     
     // dimensoes
     let screenWidth = UIScreen.main.bounds.width
@@ -11,6 +11,7 @@ struct ButtonRotateView: View {
     let buttonCollor = Color.black
     let sizeButton:CGFloat = 58
     let rotateDuration: CGFloat = 0.5
+    let delay: Double = 0.7
     
     var body: some View {
         // Principal
@@ -19,8 +20,11 @@ struct ButtonRotateView: View {
             HStack (spacing: 31){
                 // L'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .left, clockWise: false, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .left, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image("l_anticlockwise")
                         .resizable()
@@ -31,8 +35,11 @@ struct ButtonRotateView: View {
                 
                 // L
                 Button(action: {
-                    gameViewController!.makeMovement(face: .left, clockWise: true, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .left, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image(systemName: "l.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
@@ -43,8 +50,11 @@ struct ButtonRotateView: View {
                 
                 // R'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .right, clockWise: false, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .right, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image("r_anticlockwise")
                         .resizable()
@@ -55,8 +65,11 @@ struct ButtonRotateView: View {
                 
                 // R
                 Button(action: {
-                    gameViewController!.makeMovement(face: .right, clockWise: true, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .right, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image(systemName: "r.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
@@ -70,8 +83,11 @@ struct ButtonRotateView: View {
             HStack (spacing: 31){
                 // B'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .back, clockWise: false, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .back, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image("b_anticlockwise")
                         .resizable()
@@ -82,8 +98,11 @@ struct ButtonRotateView: View {
                 
                 // B
                 Button(action: {
-                    gameViewController!.makeMovement(face: .back, clockWise: true, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .back, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image(systemName: "b.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
@@ -94,8 +113,11 @@ struct ButtonRotateView: View {
                 
                 // F'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .front, clockWise: false, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .front, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image("f_anticlockwise")
                         .resizable()
@@ -106,8 +128,11 @@ struct ButtonRotateView: View {
                 
                 // F
                 Button(action: {
-                    gameViewController!.makeMovement(face: .front, clockWise: true, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .front, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image(systemName: "f.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
@@ -121,8 +146,11 @@ struct ButtonRotateView: View {
             HStack (spacing: 31) {
                 // D'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .down, clockWise: false, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .down, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image("d_anticlockwise")
                         .resizable()
@@ -133,8 +161,11 @@ struct ButtonRotateView: View {
                 
                 // D
                 Button(action: {
-                    gameViewController!.makeMovement(face: .down, clockWise: true, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .down, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image(systemName: "d.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))
@@ -145,8 +176,11 @@ struct ButtonRotateView: View {
                 
                 // U'
                 Button(action: {
-                    gameViewController!.makeMovement(face: .up, clockWise: false, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .up, clockWise: false, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image("u_anticlockwise")
                         .resizable()
@@ -157,8 +191,11 @@ struct ButtonRotateView: View {
                 
                 // U
                 Button(action: {
-                    gameViewController!.makeMovement(face: .up, clockWise: true, duration: rotateDuration)
+                    gameViewController.makeMovement(face: .up, clockWise: true, duration: rotateDuration)
                     viewModel.disableButtonsTemporarily()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        gameViewController.checkIsComplete()
+                    }
                 }) {
                     Image(systemName: "u.circle.fill")
                         .font(.custom("SF Pro", size: sizeButton, relativeTo: .body))

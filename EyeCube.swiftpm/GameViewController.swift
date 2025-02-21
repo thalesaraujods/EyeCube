@@ -23,6 +23,7 @@ class GameViewController: UIViewController {
     let offset: [Float] = [-0.50, 0.5]
     
     var isScrambled: Bool = false
+    var isCompleted: Bool = false
     
     var faces: [Face: SCNVector3] = [
         .right: SCNVector3( 1,  0,  0), // Direita
@@ -37,6 +38,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isCompleted = false
         createScene()
         createCamera()
         createRubiksCube()
@@ -47,7 +49,7 @@ class GameViewController: UIViewController {
     func generateScramble() {
         var delay: TimeInterval = 0
         
-        for _ in 0..<10 {
+        for _ in 0..<2 {
             let randomFace = Face.allCases.randomElement()!
             let randomClockwise = Bool.random()
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
@@ -57,6 +59,7 @@ class GameViewController: UIViewController {
             delay += 0.25 // Adiciona um delay entre cada rotação
         }
         
+        self.isCompleted = false
         self.isScrambled = true
     }
     
@@ -92,8 +95,6 @@ class GameViewController: UIViewController {
     }
     
     func createRubiksCube() {
-        
-        
         // material
         let greenMaterial = SCNMaterial()
         greenMaterial.diffuse.contents = UIColor.green
@@ -201,78 +202,197 @@ class GameViewController: UIViewController {
         }
     }
     
-    func checkIsComplete() /*-> Bool*/ {
-        var countCompleteCubes: Int = 0
+    func checkIsComplete() {
+        var countCompleteCubesA: Int = 0
+        var countCompleteCubesB: Int = 0
+        var countCompleteCubesC: Int = 0
+        var countCompleteCubesD: Int = 0
         let toleranceDistance: Float = 0.03
         
-        //        if isScrambled {
-        for child in sceneView.scene!.rootNode.childNodes {
-            let name = child.name
-            let position = child.position
-            
-            switch name {
-            case "cubeA":
-                if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
-                    
+        if isScrambled {
+            // Verifiçao A
+            for child in sceneView.scene!.rootNode.childNodes {
+                let name = child.name
+                let position = child.position
+                
+                switch name {
+                case "cubeA":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                case "cubeB":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                case "cubeC":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                case "cubeD":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                case "cubeE":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                case "cubeF":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                case "cubeG":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                case "cubeH":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesA += 1
+                    }
+                default:
+                    break
                 }
-            case "cubeB":
-                if child.position == SCNVector3(x: offset[0], y: offset[0], z: offset[1]) {
-                    countCompleteCubes += 1
-                    print(countCompleteCubes)
-                }
-            case "cubeC":
-                if child.position == SCNVector3(x: offset[0], y: offset[1], z: offset[0]) {
-                    countCompleteCubes += 1
-                    print(countCompleteCubes)
-                }
-            case "cubeD":
-                if child.position == SCNVector3(x: offset[0], y: offset[1], z: offset[1]) {
-                    countCompleteCubes += 1
-                    print(countCompleteCubes)
-                }
-            case "cubeE":
-                if child.position == SCNVector3(x: offset[1], y: offset[0], z: offset[0]) {
-                    countCompleteCubes += 1
-                    print(countCompleteCubes)
-                }
-            case "cubeF":
-                if child.position == SCNVector3(x: offset[1], y: offset[0], z: offset[1]) {
-                    countCompleteCubes += 1
-                    print(countCompleteCubes)
-                }
-            case "cubeG":
-                if child.position == SCNVector3(x: offset[1], y: offset[1], z: offset[0]) {
-                    countCompleteCubes += 1
-                    print(countCompleteCubes)
-                }
-            case "cubeH":
-                if child.position == SCNVector3(x: offset[1], y: offset[1], z: offset[1]) {
-                    countCompleteCubes += 1
-                    print(countCompleteCubes)
-                }
-            default:
-                break
             }
-//            print(child.position.x, child.position.y, child.position.z)
+            
+            // Verifiçao B
+            for child in sceneView.scene!.rootNode.childNodes {
+                let name = child.name
+                let position = child.position
+                
+                switch name {
+                case "cubeA":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                case "cubeB":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                case "cubeC":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                case "cubeD":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                case "cubeE":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                case "cubeF":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                case "cubeG":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                case "cubeH":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesB += 1
+                    }
+                default:
+                    break
+                }
+            }
+            
+            // Verifiçao C
+            for child in sceneView.scene!.rootNode.childNodes {
+                let name = child.name
+                let position = child.position
+                
+                switch name {
+                case "cubeA":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                case "cubeB":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                case "cubeC":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                case "cubeD":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                case "cubeE":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                case "cubeF":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                case "cubeG":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                case "cubeH":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesC += 1
+                    }
+                default:
+                    break
+                }
+            }
+            
+            // Verifiçao D
+            for child in sceneView.scene!.rootNode.childNodes {
+                let name = child.name
+                let position = child.position
+                
+                switch name {
+                case "cubeA":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                case "cubeB":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                case "cubeC":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                case "cubeD":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[1], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                case "cubeE":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                case "cubeF":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[0], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                case "cubeG":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[1]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                case "cubeH":
+                    if checkToleranceDistance(positionCube: position, positionCorrect: SCNVector3(x: offset[0], y: offset[1], z: offset[0]), tolerance: toleranceDistance) {
+                        countCompleteCubesD += 1
+                    }
+                default:
+                    break
+                }
+            }
+            
+            if (countCompleteCubesA == 8) || (countCompleteCubesB == 8) || (countCompleteCubesC == 8) || (countCompleteCubesD == 8) {
+                self.isCompleted = true
+            }
         }
-        
-        //        } else {
-        //            return false
-        //        }
-        
-        //        if countCompleteCubes == 6 {
-        //            return true
-        //        }
-        //        return false
     }
     
     func makeMovement(face: Face, clockWise: Bool, duration: CGFloat) {
         sceneView.scene!.rootNode.runAction(.sequence([
-            //            .wait(duration: 2),
             .run { _ in
                 self.rotate(face: face, clockWise: clockWise, duration: duration)
-            },
-            //.wait(duration: 0.25)
+            }
         ]))
     }
     

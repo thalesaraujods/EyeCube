@@ -5,18 +5,17 @@ import SwiftUI
 struct GameView: UIViewControllerRepresentable {
     
     // Binding para receber a referência da GameViewController
-    @Binding var gameViewController: GameViewController?
+    @Binding var gameViewController: GameViewController
     
     func makeUIViewController(context: Context) -> GameViewController {
-        let gameVC = GameViewController()
-        
+
         // Como a criação pode ocorrer fora do ciclo de atualização do SwiftUI,
         // usamos DispatchQueue.main.async para atribuir a referência de forma segura.
-        DispatchQueue.main.async {
-            self.gameViewController = gameVC
-        }
+//        DispatchQueue.main.async {
+//            self.gameViewController = gameVC
+//        }
         
-        return gameVC
+        return gameViewController
     }
     
     func updateUIViewController(_ uiViewController: GameViewController, context: Context) {}

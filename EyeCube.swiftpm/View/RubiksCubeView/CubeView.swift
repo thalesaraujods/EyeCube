@@ -3,7 +3,8 @@ import SwiftUI
 
 struct CubeView: View {
     
-    @State private var gameViewController: GameViewController?
+    @EnvironmentObject private var coordinator: Coordinator
+    @State private var gameViewController = GameViewController()
     @ObservedObject var viewModel = CubeViewModel.shared
     
     // dimensoes
@@ -20,18 +21,23 @@ struct CubeView: View {
                     .font(.largeTitle)
                     .padding()
                 Spacer()
-                Button(action: {
-                    gameViewController!.checkIsComplete()
-                }) {
-                    Label("Começar", systemImage: "")
-                        .font(.system(.body))
-                        .frame(width: screenWidth*0.31, height: screenHeight*0.07)
-                        .background(Color.blue)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(10)
-                        .multilineTextAlignment(.center)
-                }
+                //                Button(action: {
+                //                    gameViewController!.checkIsComplete()
+                //                }) {
+                //                    Label("Começar", systemImage: "")
+                //                        .font(.system(.body))
+                //                        .frame(width: screenWidth*0.31, height: screenHeight*0.07)
+                //                        .background(Color.blue)
+                //                        .foregroundColor(Color.white)
+                //                        .cornerRadius(10)
+                //                        .multilineTextAlignment(.center)
+                //                }
                 ButtonRotateView(gameViewController: $gameViewController)
+            }
+        }
+        .onChange(of: gameViewController.isCompleted) {
+            if gameViewController.isCompleted {
+                coordinator.push(.finished)
             }
         }
     }
