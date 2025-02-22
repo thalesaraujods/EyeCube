@@ -56,7 +56,7 @@ class GameViewController: UIViewController {
                 self.makeMovement(face: randomFace, clockWise: randomClockwise, duration: 0.1)
             }
             
-            delay += 0.25 // Adiciona um delay entre cada rotação
+            delay += 0.35 // Adiciona um delay entre cada rotação
         }
         
         self.isCompleted = false
@@ -135,43 +135,43 @@ class GameViewController: UIViewController {
                     
                     // Left Face
                     if x == offset[0] && y == offset[0] && z == offset[0] {
-                        materials = [blackMaterial, blackMaterial, blueMaterial, orangeMaterial, blackMaterial, yellowMaterial]
+                        materials = [blackMaterial, blackMaterial, blueMaterial, redMaterial, blackMaterial, whiteMaterial]
                         cube.name = "cubeA"
                     }
                     
                     if x == offset[0] && y == offset[0] && z == offset[1] {
-                        materials = [greenMaterial, blackMaterial, blackMaterial, orangeMaterial, blackMaterial, yellowMaterial]
+                        materials = [greenMaterial, blackMaterial, blackMaterial, redMaterial, blackMaterial, whiteMaterial]
                         cube.name = "cubeB"
                     }
                     
                     if x == offset[0] && y == offset[1] && z == offset[0] {
-                        materials = [blackMaterial, blackMaterial, blueMaterial, orangeMaterial, whiteMaterial, blackMaterial]
+                        materials = [blackMaterial, blackMaterial, blueMaterial, redMaterial, yellowMaterial, blackMaterial]
                         cube.name = "cubeC"
                     }
                     
                     if x == offset[0] && y == offset[1] && z == offset[1] {
-                        materials = [greenMaterial, blackMaterial, blackMaterial, orangeMaterial, whiteMaterial, blackMaterial]
+                        materials = [greenMaterial, blackMaterial, blackMaterial, redMaterial, yellowMaterial, blackMaterial]
                         cube.name = "cubeD"
                     }
                     
                     // Right Face
                     if x == offset[1] && y == offset[0] && z == offset[0] {
-                        materials = [blackMaterial, redMaterial, blueMaterial, blackMaterial, blackMaterial, yellowMaterial]
+                        materials = [blackMaterial, orangeMaterial, blueMaterial, blackMaterial, blackMaterial, whiteMaterial]
                         cube.name = "cubeE"
                     }
                     
                     if x == offset[1] && y == offset[0] && z == offset[1] {
-                        materials = [greenMaterial, redMaterial, blackMaterial, blackMaterial, blackMaterial, yellowMaterial]
+                        materials = [greenMaterial, orangeMaterial, blackMaterial, blackMaterial, blackMaterial, whiteMaterial]
                         cube.name = "cubeF"
                     }
                     
                     if x == offset[1] && y == offset[1] && z == offset[0] {
-                        materials = [blackMaterial, redMaterial, blueMaterial, blackMaterial, whiteMaterial, blackMaterial]
+                        materials = [blackMaterial, orangeMaterial, blueMaterial, blackMaterial, yellowMaterial, blackMaterial]
                         cube.name = "cubeG"
                     }
                     
                     if x == offset[1] && y == offset[1] && z == offset[1] {
-                        materials = [greenMaterial, redMaterial, blackMaterial, blackMaterial, whiteMaterial, blackMaterial]
+                        materials = [greenMaterial, orangeMaterial, blackMaterial, blackMaterial, yellowMaterial, blackMaterial]
                         cube.name = "cubeH"
                     }
                     
