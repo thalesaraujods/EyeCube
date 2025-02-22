@@ -2,6 +2,8 @@ import SwiftUI
 
 struct FinishedView: View {
     
+    @EnvironmentObject private var coordinator: Coordinator
+    
     // dimensoes
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
@@ -13,23 +15,12 @@ struct FinishedView: View {
             
             Spacer().frame(height: screenHeight*0.14)
             Button(action: {
-                
+                coordinator.popToRoot()
             }) {
                 Label("finished_button_home", systemImage: "")
                     .font(.system(.body))
                     .frame(width: screenWidth*0.31, height: screenHeight*0.07)
                     .background(Color.green)
-                    .foregroundColor(Color.white)
-                    .cornerRadius(10)
-                    .multilineTextAlignment(.center)
-            }
-            Button(action: {
-                
-            }) {
-                Label("finished_button_restart", systemImage: "")
-                    .font(.system(.body))
-                    .frame(width: screenWidth*0.31, height: screenHeight*0.07)
-                    .background(Color.blue)
                     .foregroundColor(Color.white)
                     .cornerRadius(10)
                     .multilineTextAlignment(.center)

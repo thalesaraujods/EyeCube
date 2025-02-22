@@ -2,6 +2,8 @@ import SwiftUI
 
 struct QuitView: View {
     
+    @EnvironmentObject private var coordinator: Coordinator
+    
     // dimensoes
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
@@ -14,7 +16,7 @@ struct QuitView: View {
             Spacer().frame(height: screenHeight*0.14)
             
             Button(action: {
-                
+                coordinator.popToRoot()
             }) {
                 Label("quit_button_home", systemImage: "")
                     .font(.system(.body))

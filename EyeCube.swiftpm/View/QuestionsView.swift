@@ -7,47 +7,56 @@ struct QuestionsView: View {
     let screenHeight = UIScreen.main.bounds.height
     
     var body: some View {
-        VStack {
-            Text("Os botões na tela seguem um padrão de letras para representar cada face do cubo:")
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(systemName: "r.circle")
-                    Text("→ Right")
+        VStack(alignment: .leading, spacing: 20){
+            Text("questions_message1")
+                .font(.custom("SF Pro", size: 17, relativeTo: .headline))
+            HStack (spacing: 50){
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Image(systemName: "r.circle")
+                        Text("→ Right")
+                    }
+                    HStack {
+                        Image(systemName: "l.circle")
+                        Text("→ Left")
+                    }
+                    HStack {
+                        Image(systemName: "u.circle")
+                        Text("→ Up")
+                    }
                 }
-                HStack {
-                    Image(systemName: "l.circle")
-                    Text("→ Left")
+                VStack(alignment: .leading) {
+                    HStack {
+                        Image(systemName: "d.circle")
+                        Text("→ Down")
+                    }
+                    HStack {
+                        Image(systemName: "f.circle")
+                        Text("→ Front")
+                    }
+                    HStack {
+                        Image(systemName: "b.circle")
+                        Text("→ Back")
+                    }
                 }
-                HStack {
-                    Image(systemName: "u.circle")
-                    Text("→ Up")
-                }
-                HStack {
-                    Image(systemName: "d.circle")
-                    Text("→ Down")
-                }
-                HStack {
-                    Image(systemName: "f.circle")
-                    Text("→ Front")
-                }
-                HStack {
-                    Image(systemName: "b.circle")
-                    Text("→ Back")
-                }
+                
             }
-            Text("Letras com um apóstrofo (') indicam rotação no sentido anti-horário, enquanto letras sem apóstrofo indicam rotação no sentido horário:")
-            VStack {
+            
+            Text("questions_message2")
+                .font(.custom("SF Pro", size: 17, relativeTo: .headline))
+            VStack (alignment: .leading) {
                 HStack {
                     Image(systemName: "r.circle")
-                    Text("→ Rotação horária")
+                    Text("questions_rotation_clockwise")
                     Image(systemName: "arrow.trianglehead.clockwise.rotate.90")
                 }
                 HStack {
-                    Image("r_anticlockwise")
+                    Image("r_anticlockwise2")
                         .resizable()
                         .frame(width: screenWidth*0.043, height: screenHeight*0.020)
                     
-                    Text("→ Rotação anti-horária")
+                    Text("questions_rotation_antiClockwise")
                     Image(systemName: "arrow.trianglehead.counterclockwise.rotate.90")
                 }
             }

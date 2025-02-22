@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum Page: String, Identifiable {
-    case home, welcome, cube, questions, finished, quit
+    case home, cube, questions, finished, quit
     
     var id: String {
         self.rawValue
@@ -29,16 +29,20 @@ class Coordinator: ObservableObject {
         switch page {
         case .home:
             HomeView()
-        case .welcome:
-            WelcomeView()
+                .navigationTitle("home_title")
         case .cube:
             CubeView()
+                .navigationBarBackButtonHidden(true)
         case .questions:
             QuestionsView()
+                .navigationTitle("questions_title")
+                .navigationBarTitleDisplayMode(.inline)
         case .finished:
             FinishedView()
+                .navigationBarBackButtonHidden(true)
         case .quit:
             QuitView()
+                .navigationBarBackButtonHidden(true)
         }
     }
 }
