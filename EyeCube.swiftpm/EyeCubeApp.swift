@@ -5,6 +5,7 @@ struct EyeCubeApp: App {
     var body: some Scene {
         WindowGroup {
             CoordinatorView()
+                .colorScheme(.light)
         }
     }
 }

@@ -10,7 +10,7 @@ struct HomeView: View {
     let screenHeight = UIScreen.main.bounds.height
     
     var body: some View {
-        VStack () {
+        VStack {
             VStack (alignment: .leading, spacing: 20){
                 Text("home_subtitle")
                     .font(.body)
@@ -21,6 +21,7 @@ struct HomeView: View {
                     .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
                 VStack (alignment: .leading, spacing: 25){
+                    // EyeTracking
                     VStack (alignment: .leading, spacing: 4){
                         HStack {
                             Image(systemName: "eye")
@@ -36,6 +37,7 @@ struct HomeView: View {
                             .font(.custom("SF Pro", size: 15, relativeTo: .body))
                     }
                     
+                    // Dispositivo
                     VStack (alignment: .leading, spacing: 4) {
                         HStack {
                             Image(systemName: "iphone")
@@ -51,6 +53,7 @@ struct HomeView: View {
                             .font(.custom("SF Pro", size: 15, relativeTo: .body))
                     }
                     
+                    // Cube
                     VStack (alignment: .leading, spacing: 4){
                         HStack {
                             Image(systemName: "cube")
@@ -70,6 +73,7 @@ struct HomeView: View {
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     
+                    // Jornada
                     VStack (alignment: .leading, spacing: 4){
                         HStack {
                             Image(systemName: "face.smiling")
@@ -88,6 +92,7 @@ struct HomeView: View {
                         
                     }
                 }
+                .padding(.leading, 10)
             }
             
             Spacer()

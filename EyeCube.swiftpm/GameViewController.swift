@@ -49,14 +49,14 @@ class GameViewController: UIViewController {
     func generateScramble() {
         var delay: TimeInterval = 0
         
-        for _ in 0..<2 {
+        for _ in 0..<10 {
             let randomFace = Face.allCases.randomElement()!
             let randomClockwise = Bool.random()
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 self.makeMovement(face: randomFace, clockWise: randomClockwise, duration: 0.1)
             }
             
-            delay += 0.35 // Adiciona um delay entre cada rotação
+            delay += 0.25 // Adiciona um delay entre cada rotação
         }
         
         self.isCompleted = false

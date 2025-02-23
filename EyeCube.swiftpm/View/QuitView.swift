@@ -18,8 +18,9 @@ struct QuitView: View {
             Button(action: {
                 coordinator.popToRoot()
             }) {
-                Label("quit_button_home", systemImage: "")
-                    .font(.system(.body))
+                Text("quit_button_home")
+                    .font(.custom("SF Pro", size: 20, relativeTo: .body))
+                    .fontWeight(.bold)
                     .frame(width: screenWidth*0.31, height: screenHeight*0.07)
                     .background(Color.blue)
                     .foregroundColor(Color.white)
@@ -39,9 +40,10 @@ struct QuitInformationView: View {
             .font(.custom("SF Pro", size: 40, relativeTo: .largeTitle))
             .fontWeight(.bold)
             .multilineTextAlignment(.center)
+            .padding(.bottom, 3)
         Text("quit_description_message")
             .font(.custom("SF Pro", size: 20, relativeTo: .headline))
-            .fontWeight(.bold)
+            .fontWeight(.semibold)
             .multilineTextAlignment(.center)
     }
 }

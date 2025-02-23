@@ -8,7 +8,7 @@ struct ButtonRotateView: View {
     // dimensoes
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
-    let buttonCollor = Color.black
+    let buttonCollor = Color.blue
     let sizeButton:CGFloat = 58
     let rotateDuration: CGFloat = 0.5
     let delay: Double = 0.7

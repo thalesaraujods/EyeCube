@@ -23,6 +23,39 @@
         }
       }
     },
+    "finished_button_home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
+    "finished_description_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The cube is complete, and your \njourney goes on. "
+          }
+        }
+      }
+    },
+    "finished_title_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Congratulations!"
+          }
+        }
+      }
+    },
     "home_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -217,6 +250,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cube Movements"
+          }
+        }
+      }
+    },
+    "quit_button_home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
+    "quit_description_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your progress matters more than speed. Keep trying."
+          }
+        }
+      }
+    },
+    "quit_title_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep going!"
           }
         }
       }

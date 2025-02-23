@@ -7,11 +7,11 @@ struct QuestionsView: View {
     let screenHeight = UIScreen.main.bounds.height
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20){
+        VStack(alignment: .leading){
             Text("questions_message1")
-                .font(.custom("SF Pro", size: 17, relativeTo: .headline))
+                .font(.custom("SF Pro", size: 17, relativeTo: .body))
+                .padding(.bottom, 10)
             HStack (spacing: 50){
-                
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: "r.circle")
@@ -40,11 +40,13 @@ struct QuestionsView: View {
                         Text("→ Back")
                     }
                 }
-                
             }
+            .padding(.leading, 50)
+            .padding(.bottom, 25)
             
             Text("questions_message2")
-                .font(.custom("SF Pro", size: 17, relativeTo: .headline))
+                .font(.custom("SF Pro", size: 17, relativeTo: .body))
+                .padding(.bottom, 10)
             VStack (alignment: .leading) {
                 HStack {
                     Image(systemName: "r.circle")
@@ -60,6 +62,7 @@ struct QuestionsView: View {
                     Image(systemName: "arrow.trianglehead.counterclockwise.rotate.90")
                 }
             }
+            .padding(.leading, 60)
         }
         .padding()
         Spacer()
